@@ -8,3 +8,5 @@ gem 'pry'
 gem 'chunky_png'
 gem 'nokogiri'
 gem 'twitter'
+gem 'dotenv'
+
