@@ -4,9 +4,13 @@ require 'nokogiri'
 require 'chunky_png'
 require 'twitter'
 
+def unique_and_sort(colors)
+  colors.uniq { |c| c['kanji'] }.shuffle!(random: Random.new(Time.now.to_i))
+end
+
 def generate_colors
   if File.exist?('colors.json')
-    return JSON.parse(File.read('colors.json'))
+    return unique_and_sort(JSON.parse(File.read('colors.json')))
   end
 
   colors = []
@@ -36,7 +40,7 @@ def generate_colors
   end
 
   File.write('colors.json', JSON.pretty_generate(colors.uniq { |c| c[:kanji] }))
-  JSON.parse(File.read('colors.json')).uniq { |c| c['kanji'] }.shuffle
+  unique_and_sort(JSON.parse(File.read('colors.json')))
 end
 
 def generate_image(code, width: 1200, height: 600)
