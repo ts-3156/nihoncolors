@@ -73,14 +73,9 @@ end
 def tweet_once
   color = generate_colors.first
   tweet(color['kanji'], color['code'])
-  puts "#{i} #{Time.now} #{color['kanji']}"
-end
-
-def main
-  tweet_once
-  sleep 3600
+  puts "#{Time.now} #{color['kanji']}"
 end
 
 if __FILE__ == $0
-  main
+  tweet_once
 end
