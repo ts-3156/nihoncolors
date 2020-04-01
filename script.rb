@@ -5,7 +5,8 @@ require 'chunky_png'
 require 'twitter'
 
 def unique_and_sort(colors)
-  colors.uniq { |c| c['kanji'] }.shuffle!(random: Random.new(Time.now.to_i))
+  rand = Random.new(Time.now.usec)
+  colors.uniq { |c| c['kanji'] }.shuffle!(random: rand)
 end
 
 def generate_colors
